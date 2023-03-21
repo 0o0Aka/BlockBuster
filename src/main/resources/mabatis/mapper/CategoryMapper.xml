@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.CategoryMapper">
+    <select id="getCategoryById" parameterType="int" resultType="string">
+        select label from category where movieid=#{id}
+    </select>
+
+    <insert id="addCategory">
+        insert into category (movieid,label) values((SELECT id from movie where name=#{name}),#{category})
+    </insert>
+
+    <select id="getAllCategory" resultType="map">
+            select m.id,m.name,m.img,GROUP_CONCAT(label order by m.id asc separator ' ') as label from category c inner join movie m on c.movieid=m.id group by c.movieid
+    </select>
+
+    <select id="searchCategoryByName" resultType="map">
+            select m.id,m.name,m.img,GROUP_CONCAT(label order by m.id asc separator ' ') as label from category c inner join movie m on c.movieid=m.id where m.name=#{name} group by c.movieid
+    </select>
+
+    <delete id="deleteCategoryByMovieId" parameterType="int">
+        delete from category where movieid=#{id}
+    </delete>
+
+    <insert id="updateCategory">
+        insert category set movieid=#{id},label=#{s}
+    </insert>
+</mapper>

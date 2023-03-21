@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页欢迎您</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script th:src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+</head>
+<body>
+
+<div class="app">
+    <div class="top-bar-wrapper">
+        <div class="top-bar">
+            <div class="logo">
+                <a href="/index.html">
+                    <img th:src="@{/img/logo.png}">
+                </a>
+            </div>
+            <div class="category-wrapper">
+                <ul class="category-list clearfix">
+                    <li><a href="#">爱情</a></li>
+                    <li><a href="#">喜剧</a></li>
+                    <li><a href="#">科幻</a></li>
+                    <li><a href="#">悬疑</a></li>
+                    <li><a href="#">剧情</a></li>
+                    <li><a href="#">恐怖</a></li>
+                    <li><a href="#">
+                        全部
+                        <i class="layui-icon layui-icon-down"></i>
+                    </a></li>
+                </ul>
+            </div>
+            <div class="search-wrapper ">
+                <input type="text" class="search-box" placeholder="赘婿">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

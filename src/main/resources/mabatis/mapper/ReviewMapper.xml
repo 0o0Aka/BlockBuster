@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.ReviewMapper">
+    <select id="getReviewById" resultType="map">
+        select nickname,content,time,r.rate,r.id from user as u inner join  review as r on u.id=r.userid inner join movie m on r.movieid=m.id where r.movieid=#{id} order by r.time DESC
+    </select>
+    <select id="getReviewCount" resultType="int">
+        select count(*) from user as u inner join  review as r on u.id=r.userid inner join movie m on r.movieid=m.id where r.movieid=#{id}
+    </select>
+    <select id="haveReview" resultType="int">
+        select count(*) from review as r where r.userid=#{userid} and r.movieid=#{movieid}
+    </select>
+    <insert id="addReview" parameterType="Review">
+        insert into review (userid,movieid,content,time,rate)values (#{userid},#{movieid},#{content},#{time},#{rate})
+    </insert>
+    <select id="getAllReview" resultType="map">
+        select img,review.rate,content ,name ,releasedate,time,movie.id from review inner join movie on review.movieid=movie.id where userid=#{id}
+    </select>
+    <delete id="deleteReview" parameterType="int">
+        delete from review where id=#{id}
+    </delete>
+</mapper>

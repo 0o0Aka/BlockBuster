@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.ActorMapper">
+    <select id="getActorByMovieId" resultType="map">
+        select cname, img, p.play, p.role from actor as a inner join perform as p on p.actorid=a.id where p.movieid=#{id} order by p.role asc
+    </select>
+
+    <select id="getActorByCname" resultType="Actor">
+        select * from actor where cname=#{cname}
+    </select>
+
+    <select id="getAllActor" resultType="Actor">
+        select * from actor group by cname
+    </select>
+
+    <select id="searchActorById" resultType="Actor">
+        select * from actor where id=#{id}
+    </select>
+
+    <select id="searchActorByCname" resultType="Actor">
+        select * from actor where cname like '%${name}%' group by cname
+    </select>
+
+    <update id="updateActorById" parameterType="Actor">
+        update actor set cname=#{cname},ename=#{ename},birth=#{birth} ,country=#{country} ,info=#{info},sex=#{sex} where id=#{id}
+    </update>
+
+    <delete id="deleteActor" parameterType="int">
+        delete from actor where id=#{id}
+    </delete>
+
+    <insert id="addActor" parameterType="actor">
+        insert into actor (cname,ename,birth,country,info,sex)values (#{cname},#{ename},#{birth},#{country},#{info},#{sex})
+    </insert>
+
+    <select id="haveActor" resultType="int">
+        select count(*) from actor where cname=#{cname}
+    </select>
+</mapper>

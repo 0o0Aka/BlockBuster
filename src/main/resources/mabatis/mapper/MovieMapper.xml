@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.MovieMapper">
+
+    <select id="getTurnMovies" resultType="Movie">
+        select *from movie order by clickrate desc limit 12
+    </select>
+    <select id="getRateMovies" resultType="Movie">
+        select *from movie order by rate desc limit 12
+    </select>
+    <select id="getMovieById" resultType="Movie">
+        select *from movie where id=#{id}
+    </select>
+    <select id="getMovieByName" resultType="Movie">
+        select *from movie where name like '%${name}%'
+    </select>
+    <select id="searchMovieById" resultType="Movie">
+        select * from movie where id=#{id};
+    </select>
+    <select id="searchMovie" resultType="Movie">
+        select * from movie where id=#{id} and name=#{name}
+    </select>
+    <select id="getRelateMovie" resultType="Movie">
+        select  * from movie where category=(select category from movie where id=#{id}) and id!=#{id} order by rate DESC
+    </select>
+    <select id="searchMovieByName" resultType="Map">
+        select id,name,rate,releasedate,length,clickrate,overview,img from movie where name like '%${name}%'
+    </select>
+    <select id="getAllMovie" resultType="map">
+        select id,name,rate,releasedate,length,clickrate,overview,img from movie
+    </select>
+    <select id="getMovieByCategory" resultType="map">
+        select m.id,name,rate,releasedate,length,clickrate,overview,img from movie m inner join category c on m.id=c.movieid where label=#{category}
+    </select>
+    <update id="addClickrateById">
+        update movie set clickrate=clickrate+1 where id=#{movieid}
+    </update>
+    <select id="getAllMovieAdmin" resultType="Movie">
+        select * from movie
+    </select>
+    <update id="updateMovieById">
+        update movie set name=#{name},category=#{category},overview=#{overview},releasedate=#{releasedate},length=#{length},url=#{url} where id=#{id}
+    </update>
+    <delete id="deleteMovie" parameterType="int">
+        delete from movie where id=#{id}
+    </delete>
+    <insert id="addMovie" parameterType="Movie">
+        insert into movie (name,category,overview,length,releasedate)values (#{name},#{category},#{overview},#{length},#{releasedate})
+    </insert>
+    <select id="getMovieUrl" resultType="string">
+        select url from movie where id=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.PerformMapper">
+    <select id="getPerformMovieById" resultType="map">
+        select m.img, releasedate, length, m.name, m.id from perform as p inner join movie as m on p.movieid=m.id where p.actorid=#{id}
+    </select>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.CollectMapper">
+    <select id="isCollect" resultType="int">
+        select count(*) from collect where userid=#{userid} and movieid=#{movieid}
+    </select>
+    <insert id="addCollect">
+        insert into collect (userid,movieid) values (#{userid},#{movieid})
+    </insert>
+
+    <select id="getAllCollectById" resultType="map">
+        select m.img ,m.name ,m.releasedate ,m.length ,m.rate ,m.overview ,m.clickrate ,m.id from collect as c inner join movie as m on c.movieid=m.id where c.userid=#{userid} order by m.clickrate DESC
+    </select>
+
+    <select id="getAllCollectById1" resultType="map">
+        select m.img ,m.name ,m.releasedate ,m.length ,m.rate ,m.overview ,m.clickrate ,m.id  from collect as c inner join movie as m on c.movieid=m.id where c.userid=#{userid} order by m.rate DESC
+    </select>
+
+    <delete id="deleteCollectById">
+        delete from collect where userid=#{userid} and movieid=#{movieid}
+    </delete>
+</mapper>

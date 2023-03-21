@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.ComplainMapper">
+
+    <insert id="addComplain" >
+        insert into complain (reviewid,content,type,movieid)values (#{reviewid},#{content},#{type},#{movieid})
+    </insert>
+
+    <select id="getAllComplain" resultType="map">
+        select c.id,m.name,c.type,c.content,img,c.reviewid,r.content as content1 from complain c inner join movie m on c.movieid=m.id inner join review r on r.id=c.reviewid
+    </select>
+
+    <select id="searchComplain" resultType="map">
+        select c.id,m.name,c.type,c.content,img,c.reviewid,r.content as content1 from complain c inner join movie m on c.movieid=m.id inner join review r on r.id=c.reviewid where m.name=#{name} and c.type=#{type}
+    </select>
+
+    <select id="searchComplainByName" resultType="map">
+        select c.id,m.name,c.type,c.content,img,c.reviewid,r.content as content1 from complain c inner join movie m on c.movieid=m.id inner join review r on r.id=c.reviewid where m.name=#{name}
+    </select>
+
+    <select id="searchComplainByType" resultType="map">
+        select c.id,m.name,c.type,c.content,img,c.reviewid,r.content as content1 from complain c inner join movie m on c.movieid=m.id inner join review r on r.id=c.reviewid where c.type=#{type}
+    </select>
+
+    <delete id="deleteComplain" parameterType="int">
+        delete from complain where reviewid=#{id}
+    </delete>
+</mapper>

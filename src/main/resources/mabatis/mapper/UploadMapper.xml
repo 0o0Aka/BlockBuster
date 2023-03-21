@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatis.mapper.UploadMapper">
+    <update id="changeImg">
+        update user set img=concat('./img/',#{imgname}) where id=#{id}
+   </update>
+
+    <update id="uploadImageAdmin">
+        update user set img=concat('./img/',#{originalFilename}) where nickname=#{nickname}
+   </update>
+
+    <update id="uploadMovieImg">
+        update movie set img=concat('./img/',#{originalFilename}) where name=#{name}
+    </update>
+
+    <update id="uploadMovie">
+        update movie set url=concat('./mp4/',#{originalFilename}) where name=#{name}
+    </update>
+
+    <update id="uploadActorImg">
+        update actor set img=concat('./img/',#{originalFilename}) where cname=#{name}
+    </update>
+</mapper>

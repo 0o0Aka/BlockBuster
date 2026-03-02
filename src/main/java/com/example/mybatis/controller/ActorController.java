@@ -60,7 +60,6 @@ public class ActorController {
 
     @RequestMapping("/addActor")
     public String addActor(Actor actor){
-        System.out.println(actor);
         return actorService.addActor(actor);
     }
 }

@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.4.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.example</groupId>
     <artifactId>mybatis</artifactId>
@@ -15,48 +15,73 @@
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>1.8</java.version>
+        <mysql.version>8.0.33</mysql.version>
     </properties>
     <dependencies>
+        <!-- Spring Boot Starters -->
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.4</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
+
+        <!-- MyBatis -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+
+        <!-- Thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
+        <!-- MySQL 驱动（使用新坐标） -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Druid 数据库连接池和SQL解析 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.8</version>
+        </dependency>
+
+        <!-- FastJSON -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83</version>  <!-- 使用更新版本 -->
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- DevTools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.5</version>
         </dependency>
     </dependencies>
 
@@ -65,9 +90,180 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.2.6.RELEASE</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
+
+
+        <!--<?xml version="1.0" encoding="UTF-8"?>-->
+        <!--<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+        <!--         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">-->
+        <!--    <modelVersion>4.0.0</modelVersion>-->
+        <!--    <parent>-->
+        <!--        <groupId>org.springframework.boot</groupId>-->
+        <!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--        <version>2.4.4</version>-->
+        <!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+        <!--    </parent>-->
+        <!--    <groupId>com.example</groupId>-->
+        <!--    <artifactId>mybatis</artifactId>-->
+        <!--    <version>0.0.1-SNAPSHOT</version>-->
+        <!--    <name>mybatis</name>-->
+        <!--    <description>Demo project for Spring Boot</description>-->
+        <!--    <properties>-->
+        <!--        <java.version>1.8</java.version>-->
+        <!--    </properties>-->
+        <!--    <dependencies>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.mybatis.spring.boot</groupId>-->
+        <!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
+        <!--            <version>2.1.4</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-jdbc</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-thymeleaf</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-web</artifactId>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>mysql</groupId>-->
+        <!--            <artifactId>mysql-connector-java</artifactId>-->
+        <!--            <version>8.0.33</version>-->
+        <!--            <scope>runtime</scope>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-test</artifactId>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.projectlombok</groupId>-->
+        <!--            <artifactId>lombok</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-devtools</artifactId>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba</groupId>-->
+        <!--            <artifactId>fastjson</artifactId>-->
+        <!--            <version>1.2.5</version>-->
+        <!--        </dependency>-->
+
+        <!--        <dependency>-->
+        <!--            <groupId>com.alibaba</groupId>-->
+        <!--            <artifactId>druid</artifactId>-->
+        <!--            <version>1.2.20</version>-->
+        <!--        </dependency>-->
+
+
+
+        <!--        &lt;!&ndash; 可选：如果需要解析 MySQL 方言，引入 MySQL 驱动 &ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>mysql</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>mysql-connector-java</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>8.0.33</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;&lt;!&ndash;            <scope>runtime</scope>&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        &lt;!&ndash; 1. JSQLParser：基础 SQL 解析/语法校验 &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>com.github.jsqlparser</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>jsqlparser</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>4.8</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        &lt;!&ndash; 2. Druid SQL Parser：增强型 SQL 校验（可选，二选一或都用） &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>com.alibaba</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>druid</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>1.2.20</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        &lt;!&ndash; 3. MyBatis 核心（XML SQL 场景依赖） &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>org.mybatis</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>mybatis</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>3.5.13</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        &lt;!&ndash; 4. Spring JDBC（拼接 SQL 场景依赖） &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>org.springframework</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>spring-jdbc</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>5.3.30</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;        &lt;!&ndash; 5. 单元测试（校验逻辑测试） &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>junit</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>junit</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>4.13.2</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <scope>test</scope>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+
+        <!--        &lt;!&ndash; 6. 日志（打印校验结果） &ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>org.slf4j</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>slf4j-api</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>2.0.7</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <groupId>ch.qos.logback</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <artifactId>logback-classic</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <version>1.2.13</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
+        <!--    </dependencies>-->
+
+        <!--    <build>-->
+        <!--        <plugins>-->
+        <!--            <plugin>-->
+        <!--                <groupId>org.springframework.boot</groupId>-->
+        <!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+        <!--                <version>2.2.6.RELEASE</version>-->
+        <!--            </plugin>-->
+
+        <!--            &lt;!&ndash; Maven 测试插件：编译时执行 SQL 语法校验 &ndash;&gt;-->
+        <!--&lt;!&ndash;            <plugin>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <groupId>org.apache.maven.plugins</groupId>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <artifactId>maven-surefire-plugin</artifactId>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <version>3.0.0</version>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <configuration>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    &lt;!&ndash; 只执行 SQL 语法校验测试 &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <includes>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        <include>**/SqlSyntaxCheckTest.java</include>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    </includes>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    &lt;!&ndash; 测试失败则编译失败（核心：强制约束） &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <testFailureIgnore>false</testFailureIgnore>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </configuration>&ndash;&gt;-->
+        <!--&lt;!&ndash;                <executions>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    <execution>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        &lt;!&ndash; 绑定到 compile 阶段，编译时执行 &ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;                        <phase>compile</phase>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        <goals>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <goal>test</goal>&ndash;&gt;-->
+        <!--&lt;!&ndash;                        </goals>&ndash;&gt;-->
+        <!--&lt;!&ndash;                    </execution>&ndash;&gt;-->
+        <!--&lt;!&ndash;                </executions>&ndash;&gt;-->
+        <!--&lt;!&ndash;            </plugin>&ndash;&gt;-->
+        <!--        </plugins>-->
+        <!--    </build>-->
+
+        <!--</project>-->
+

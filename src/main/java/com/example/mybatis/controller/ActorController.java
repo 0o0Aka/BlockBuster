@@ -44,9 +44,7 @@ public class ActorController {
     @RequestMapping("/test")
     public int test(){
         QueryWrapper<Actor> wrapper=new QueryWrapper<>();
-//        wrapper.selectAll();
-//        wrapper.eq("id","1");
-//        List<Actor> actor= actorTestMapper.selectList(wrapper);
+        List<Actor> actor1= actorTestMapper.selectList(wrapper);
         int actor= actorTestMapper.delete(wrapper);
         return actor;
     }

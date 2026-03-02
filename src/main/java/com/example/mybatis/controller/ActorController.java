@@ -1,6 +1,8 @@
 package com.example.mybatis.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.mybatis.bean.Actor;
+import com.example.mybatis.mapper.ActorTestMapper;
 import com.example.mybatis.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ import java.util.Map;
 public class ActorController {
     @Autowired
     ActorService actorService;
+
+    @Autowired
+    ActorTestMapper actorTestMapper;
     @RequestMapping("/getActorByMovieId")
     public List<Map> getActorByMovieId(int id){
          return actorService.getActorByMovieId(id);
@@ -34,6 +39,16 @@ public class ActorController {
         map.put("count",actorService.getAllActor().size());
         map.put("data",actorService.getAllActor());
         return map;
+    }
+
+    @RequestMapping("/test")
+    public int test(){
+        QueryWrapper<Actor> wrapper=new QueryWrapper<>();
+//        wrapper.selectAll();
+//        wrapper.eq("id","1");
+//        List<Actor> actor= actorTestMapper.selectList(wrapper);
+        int actor= actorTestMapper.delete(wrapper);
+        return actor;
     }
 
     @RequestMapping("/searchActor")
@@ -60,6 +75,7 @@ public class ActorController {
 
     @RequestMapping("/addActor")
     public String addActor(Actor actor){
+        System.out.println(actor);
         return actorService.addActor(actor);
     }
 }

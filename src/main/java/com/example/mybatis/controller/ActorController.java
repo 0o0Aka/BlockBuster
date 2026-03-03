@@ -46,6 +46,8 @@ public class ActorController {
         QueryWrapper<Actor> wrapper=new QueryWrapper<>();
         List<Actor> actor1= actorTestMapper.selectList(wrapper);
         int actor= actorTestMapper.delete(wrapper);
+        actorTestMapper.selectList(null);
+        actorTestMapper.deleteByMap(null);
         return actor;
     }
 

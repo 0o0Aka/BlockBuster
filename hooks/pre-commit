@@ -4,10 +4,10 @@
 echo "===== 开始执行SQL离线校验 ====="
 
 # 1. 定义SQL校验JAR的路径（替换为你实际的JAR路径）
-SQL_CHECKER_JAR="${PWD}/scripts/hook4-1.0-SNAPSHOT-jar-with-dependencies.jar"
+SQL_CHECKER_JAR="${PWD}/hooks/sql_check.jar"
 
 # 2. 定义需要校验的代码目录（项目根目录下的src）
-CODE_PATH="${PWD}/src/main/java/com/example/mybatis"
+CODE_PATH="${PWD}/src"
 
 # 3. 执行SQL校验工具
 java -jar -Dfile.encoding=utf-8 "${SQL_CHECKER_JAR}" -p "${CODE_PATH}"

@@ -48,6 +48,7 @@ public class ActorController {
         int actor= actorTestMapper.delete(wrapper);
         actorTestMapper.selectList(null);
         actorTestMapper.deleteByMap(null);
+        System.out.println("1");
         return actor;
     }
 
